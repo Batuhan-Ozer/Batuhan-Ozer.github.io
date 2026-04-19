@@ -27,11 +27,6 @@ const certificates = [
   },
 ];
 
-export const metadata = {
-  title: "Sertifikalar | Batuhan Özer",
-  description: "Batuhan Özer'ün sertifikaları ve başarı belgeleri.",
-};
-
 export default function CertificatesPage() {
   const [openIndex, setOpenIndex] = useState(-1);
   const [popupVisible, setPopupVisible] = useState(false);
