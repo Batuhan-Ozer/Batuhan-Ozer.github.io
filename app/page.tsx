@@ -21,7 +21,7 @@ export default function Home() {
   const aboutMeText = mounted ? t.home.aboutMe : translations.en.home.aboutMe;
 
   return (
-    <div className="max-w-4xl">
+    <div className="mx-auto flex min-h-[calc(100vh-112px)] max-w-4xl flex-col items-center justify-center text-center">
       <p className="font-mono text-xs sm:text-sm tracking-[0.25em] sm:tracking-[0.35em] text-zinc-400 uppercase mb-4 sm:mb-5" suppressHydrationWarning>
         {helloText}
       </p>
@@ -40,7 +40,7 @@ export default function Home() {
 
       {/* <p className="text-zinc-500 text-base sm:text-lg md:text-xl mb-10 sm:mb-14">{t.home.email}</p> */}
 
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-14 sm:mb-20">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-14 sm:mb-20">
         <Link
           href="/projects"
           className="rounded-2xl bg-red-600 px-6 sm:px-8 py-3 sm:py-4 text-black text-lg sm:text-xl md:text-2xl font-medium hover:bg-red-500 text-center"
