@@ -17,7 +17,7 @@ export async function saveAbout(formData: FormData) {
   const descriptionEn = String(formData.get("descriptionEn") || "").trim();
 
   if (!descriptionTr || !descriptionEn) {
-    return { error: "Hakkımda alanları zorunludur." };
+    throw new Error("Hakkımda alanları zorunludur.");
   }
 
   await prisma.about.upsert({
@@ -38,7 +38,7 @@ export async function saveAbout(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/about");
   revalidatePath("/admin");
-  return { success: "Hakkımda kaydedildi." };
+  return;
 }
 
 export async function createProject(formData: FormData) {
@@ -63,7 +63,7 @@ export async function createProject(formData: FormData) {
     !descriptionEn ||
     !dateValue
   ) {
-    return { error: "Proje / yarışma alanlarını doldur." };
+    throw new Error("Proje / yarışma alanlarını doldur.");
   }
 
   const slug = slugify(titleEn || titleTr);
@@ -73,7 +73,7 @@ export async function createProject(formData: FormData) {
   });
 
   if (existing) {
-    return { error: "Bu başlığa ait slug zaten var." };
+    throw new Error("Bu başlığa ait slug zaten var.");
   }
 
   const imageList = parseLines(imagesRaw);
@@ -99,7 +99,7 @@ export async function createProject(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/projects");
   revalidatePath("/admin");
-  return { success: "Kayıt eklendi." };
+  return;
 }
 
 export async function updateProject(formData: FormData) {
@@ -115,7 +115,7 @@ export async function updateProject(formData: FormData) {
   const githubUrl = String(formData.get("githubUrl") || "").trim();
   const imagesRaw = String(formData.get("images") || "").trim();
 
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   const slug = slugify(titleEn || titleTr);
   const imageList = parseLines(imagesRaw);
@@ -143,12 +143,12 @@ export async function updateProject(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/projects");
   revalidatePath("/admin");
-  return { success: "Kayıt güncellendi." };
+  return;
 }
 
 export async function deleteProject(formData: FormData) {
   const id = Number(formData.get("id"));
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   await prisma.project.delete({
     where: { id },
@@ -157,7 +157,7 @@ export async function deleteProject(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/projects");
   revalidatePath("/admin");
-  return { success: "Kayıt silindi." };
+  return;
 }
 
 export async function createExperience(formData: FormData) {
@@ -170,7 +170,7 @@ export async function createExperience(formData: FormData) {
   const workType = String(formData.get("workType") || "").trim();
 
   if (!companyName || !positionTr || !positionEn || !startDate || !workType) {
-    return { error: "İş deneyimi alanlarını doldur." };
+    throw new Error("İş deneyimi alanlarını doldur.");
   }
 
   await prisma.experience.create({
@@ -188,7 +188,7 @@ export async function createExperience(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/work");
   revalidatePath("/admin");
-  return { success: "İş deneyimi eklendi." };
+  return;
 }
 
 export async function updateExperience(formData: FormData) {
@@ -201,7 +201,7 @@ export async function updateExperience(formData: FormData) {
   const isCurrent = formData.get("isCurrent") === "on";
   const workType = String(formData.get("workType") || "").trim();
 
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   await prisma.experience.update({
     where: { id },
@@ -219,12 +219,12 @@ export async function updateExperience(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/work");
   revalidatePath("/admin");
-  return { success: "İş deneyimi güncellendi." };
+  return;
 }
 
 export async function deleteExperience(formData: FormData) {
   const id = Number(formData.get("id"));
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   await prisma.experience.delete({
     where: { id },
@@ -233,7 +233,7 @@ export async function deleteExperience(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/work");
   revalidatePath("/admin");
-  return { success: "İş deneyimi silindi." };
+  return;
 }
 
 export async function createEducation(formData: FormData) {
@@ -243,7 +243,7 @@ export async function createEducation(formData: FormData) {
   const departmentEn = String(formData.get("departmentEn") || "").trim();
 
   if (!level || !institution || !departmentTr || !departmentEn) {
-    return { error: "Eğitim alanlarını doldur." };
+    throw new Error("Eğitim alanlarını doldur.");
   }
 
   await prisma.education.create({
@@ -258,7 +258,7 @@ export async function createEducation(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/education");
   revalidatePath("/admin");
-  return { success: "Eğitim eklendi." };
+  return;
 }
 
 export async function updateEducation(formData: FormData) {
@@ -268,7 +268,7 @@ export async function updateEducation(formData: FormData) {
   const departmentTr = String(formData.get("departmentTr") || "").trim();
   const departmentEn = String(formData.get("departmentEn") || "").trim();
 
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   await prisma.education.update({
     where: { id },
@@ -283,12 +283,12 @@ export async function updateEducation(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/education");
   revalidatePath("/admin");
-  return { success: "Eğitim güncellendi." };
+  return;
 }
 
 export async function deleteEducation(formData: FormData) {
   const id = Number(formData.get("id"));
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   await prisma.education.delete({
     where: { id },
@@ -297,7 +297,7 @@ export async function deleteEducation(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/education");
   revalidatePath("/admin");
-  return { success: "Eğitim silindi." };
+  return;
 }
 
 export async function createCourse(formData: FormData) {
@@ -308,7 +308,7 @@ export async function createCourse(formData: FormData) {
   const descriptionEn = String(formData.get("descriptionEn") || "").trim();
 
   if (!titleTr || !titleEn) {
-    return { error: "Kurs başlıkları zorunlu." };
+    throw new Error("Kurs başlıkları zorunlu.");
   }
 
   await prisma.course.create({
@@ -324,7 +324,7 @@ export async function createCourse(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/education");
   revalidatePath("/admin");
-  return { success: "Kurs eklendi." };
+  return;
 }
 
 export async function updateCourse(formData: FormData) {
@@ -335,7 +335,7 @@ export async function updateCourse(formData: FormData) {
   const descriptionTr = String(formData.get("descriptionTr") || "").trim();
   const descriptionEn = String(formData.get("descriptionEn") || "").trim();
 
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   await prisma.course.update({
     where: { id },
@@ -351,12 +351,12 @@ export async function updateCourse(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/education");
   revalidatePath("/admin");
-  return { success: "Kurs güncellendi." };
+  return;
 }
 
 export async function deleteCourse(formData: FormData) {
   const id = Number(formData.get("id"));
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   await prisma.course.delete({
     where: { id },
@@ -365,7 +365,7 @@ export async function deleteCourse(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/education");
   revalidatePath("/admin");
-  return { success: "Kurs silindi." };
+  return;
 }
 
 export async function createCertificate(formData: FormData) {
@@ -378,7 +378,7 @@ export async function createCertificate(formData: FormData) {
   const imagesRaw = String(formData.get("images") || "").trim();
 
   if (!titleTr || !titleEn) {
-    return { error: "Sertifika başlıkları zorunlu." };
+    throw new Error("Sertifika başlıkları zorunlu.");
   }
 
   const imageList = parseLines(imagesRaw);
@@ -400,7 +400,7 @@ export async function createCertificate(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/education");
   revalidatePath("/admin");
-  return { success: "Sertifika eklendi." };
+  return;
 }
 
 export async function updateCertificate(formData: FormData) {
@@ -413,7 +413,7 @@ export async function updateCertificate(formData: FormData) {
   const dateValue = String(formData.get("date") || "").trim();
   const imagesRaw = String(formData.get("images") || "").trim();
 
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   const imageList = parseLines(imagesRaw);
 
@@ -436,12 +436,12 @@ export async function updateCertificate(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/education");
   revalidatePath("/admin");
-  return { success: "Sertifika güncellendi." };
+  return;
 }
 
 export async function deleteCertificate(formData: FormData) {
   const id = Number(formData.get("id"));
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   await prisma.certificate.delete({
     where: { id },
@@ -450,7 +450,7 @@ export async function deleteCertificate(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/education");
   revalidatePath("/admin");
-  return { success: "Sertifika silindi." };
+  return;
 }
 
 export async function createBlogPost(formData: FormData) {
@@ -461,7 +461,7 @@ export async function createBlogPost(formData: FormData) {
   const imageUrl = String(formData.get("imageUrl") || "").trim();
 
   if (!titleTr || !titleEn || !descriptionTr || !descriptionEn) {
-    return { error: "Blog alanlarını doldur." };
+    throw new Error("Blog alanlarını doldur.");
   }
 
   const slug = slugify(titleEn || titleTr);
@@ -471,7 +471,7 @@ export async function createBlogPost(formData: FormData) {
   });
 
   if (existing) {
-    return { error: "Bu blog başlığına ait slug zaten var." };
+    throw new Error("Bu blog başlığına ait slug zaten var.");
   }
 
   await prisma.blogPost.create({
@@ -488,7 +488,7 @@ export async function createBlogPost(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/blog");
   revalidatePath("/admin");
-  return { success: "Blog yazısı eklendi." };
+  return;
 }
 
 export async function updateBlogPost(formData: FormData) {
@@ -499,7 +499,7 @@ export async function updateBlogPost(formData: FormData) {
   const descriptionEn = String(formData.get("descriptionEn") || "").trim();
   const imageUrl = String(formData.get("imageUrl") || "").trim();
 
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   const slug = slugify(titleEn || titleTr);
 
@@ -518,12 +518,12 @@ export async function updateBlogPost(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/blog");
   revalidatePath("/admin");
-  return { success: "Blog güncellendi." };
+  return;
 }
 
 export async function deleteBlogPost(formData: FormData) {
   const id = Number(formData.get("id"));
-  if (!id) return { error: "Kayıt bulunamadı." };
+  if (!id) throw new Error("Kayıt bulunamadı.");
 
   await prisma.blogPost.delete({
     where: { id },
@@ -532,5 +532,5 @@ export async function deleteBlogPost(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/blog");
   revalidatePath("/admin");
-  return { success: "Blog silindi." };
+  return;
 }
