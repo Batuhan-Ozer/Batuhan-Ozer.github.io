@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model About {
+  id            Int      @id @default(1)
+  imageUrl      String?
+  descriptionTr String
+  descriptionEn String
+  updatedAt     DateTime @updatedAt
+}
+
+model Project {
+  id            Int           @id @default(autoincrement())
+  type          String
+  titleTr       String
+  titleEn       String
+  subjectTr     String
+  subjectEn     String
+  slug          String        @unique
+  descriptionTr String
+  descriptionEn String
+  date          DateTime
+  githubUrl     String?
+  images        ProjectImage[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model ProjectImage {
+  id        Int      @id @default(autoincrement())
+  url       String
+  projectId Int
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Experience {
+  id          Int      @id @default(autoincrement())
+  companyName String
+  positionTr  String
+  positionEn  String
+  startDate   DateTime
+  endDate     DateTime?
+  isCurrent   Boolean  @default(false)
+  workType    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Education {
+  id           Int      @id @default(autoincrement())
+  level        String
+  institution  String
+  departmentTr String
+  departmentEn String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Course {
+  id            Int      @id @default(autoincrement())
+  titleTr       String
+  titleEn       String
+  institution   String?
+  descriptionTr String?
+  descriptionEn String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Certificate {
+  id            Int                @id @default(autoincrement())
+  titleTr       String
+  titleEn       String
+  institution   String?
+  descriptionTr String?
+  descriptionEn String?
+  date          DateTime?
+  images        CertificateImage[]
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+}
+
+model CertificateImage {
+  id            Int         @id @default(autoincrement())
+  url           String
+  certificateId Int
+  certificate   Certificate @relation(fields: [certificateId], references: [id], onDelete: Cascade)
+}
+
+model BlogPost {
+  id            Int      @id @default(autoincrement())
+  titleTr       String
+  titleEn       String
+  descriptionTr String
+  descriptionEn String
+  imageUrl      String?
+  slug          String   @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
