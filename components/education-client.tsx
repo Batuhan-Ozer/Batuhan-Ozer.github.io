@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/components/language-provider";
 import { translations } from "@/lib/translations";
-import { Award, BookOpen, CheckCircle } from "lucide-react";
+import { Award, BookOpen } from "lucide-react";
 
 type EducationItem = {
   id: number;
@@ -25,23 +25,6 @@ type CourseItem = {
   updatedAt: string;
 };
 
-type CertificateItem = {
-  id: number;
-  titleTr: string;
-  titleEn: string;
-  institution: string | null;
-  descriptionTr: string | null;
-  descriptionEn: string | null;
-  date: string | null;
-  createdAt: string;
-  updatedAt: string;
-  images: {
-    id: number;
-    url: string;
-    certificateId: number;
-  }[];
-};
-
 function getLevelLabel(value: string, language: "tr" | "en") {
   if (language === "tr") {
     return value === "high-school" ? "Lise" : "Üniversite";
@@ -52,11 +35,9 @@ function getLevelLabel(value: string, language: "tr" | "en") {
 export default function EducationClient({
   educationList,
   courses,
-  certificates,
 }: {
   educationList: EducationItem[];
   courses: CourseItem[];
-  certificates: CertificateItem[];
 }) {
   const { language } = useLanguage();
   const t = translations[language];

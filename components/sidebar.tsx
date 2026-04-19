@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useLanguage } from "@/components/language-provider";
 import { translations } from "@/lib/translations";
 import LanguageSwitcher from "@/components/language-switcher";
-import { Home, Settings, Folder, Briefcase, GraduationCap, FileText, Mail } from "lucide-react";
+import { Home, Settings, Folder, GraduationCap, Mail } from "lucide-react";
 
 export default function Navbar() {
   const path = usePathname();
