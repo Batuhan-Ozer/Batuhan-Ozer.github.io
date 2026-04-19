@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/components/language-provider";
 import { translations } from "@/lib/translations";
@@ -11,6 +12,11 @@ export default function Navbar() {
   const path = usePathname();
   const { language } = useLanguage();
   const t = translations[language];
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const linkStyle = (href: string) =>
     `inline-flex items-center gap-2 rounded-2xl px-4 py-2 transition text-sm font-medium whitespace-nowrap ${
@@ -40,7 +46,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className={linkStyle(item.href)}>
               <span>{item.icon}</span>
-              <span>{item.label}</span>
+              <span suppressHydrationWarning>{mounted ? item.label : ""}</span>
             </Link>
           ))}
         </nav>
@@ -55,7 +61,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className={linkStyle(item.href)}>
               <span>{item.icon}</span>
-              <span>{item.label}</span>
+              <span suppressHydrationWarning>{mounted ? item.label : ""}</span>
             </Link>
           ))}
         </div>

@@ -6,9 +6,13 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
-  title: "BatuhanOzer Portfolio",
+  title: "Batuhan Özer Portfolio",
   description: "Developer portfolio",
+  icons: {
+    icon: "/images/miyabi.png",
+  },
 };
+
 
 export default function RootLayout({
   children,
