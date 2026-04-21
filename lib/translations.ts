@@ -54,7 +54,7 @@
       about: "Hakkımda",
       projects: "Projeler",
       education: "Eğitim",
-      contact: "letişim",
+      contact: "İletişim",
     },
     home: {
       hello: "Hoşgeldin",
