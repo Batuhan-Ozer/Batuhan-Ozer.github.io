@@ -109,7 +109,7 @@ export default function ProjectsClient({ items }: { items: ProjectItem[] }) {
           >
             <div className="aspect-video bg-zinc-900 relative">
               <Image
-                src="/images/ozerHotel.png"
+                src="/images/ozerHotel.jpeg"
                 alt="Özer Hotel"
                 width={400}
                 height={300}
@@ -169,13 +169,7 @@ export default function ProjectsClient({ items }: { items: ProjectItem[] }) {
           </div>
         </div>
 
-        {projects.length === 0 ? (
-          <p className="text-sm sm:text-base text-gray-500">
-            {t.projects.emptyMessage}
-          </p>
-        ) : (
-          renderCards(projects)
-        )}
+        
 
         {/* ÖZER HOTEL PROJESİ POP-UP (MODAL) EKRANI */}
         {isProject1ModalOpen && (

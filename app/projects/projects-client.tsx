@@ -27,13 +27,7 @@ export default function ProjectsClient({ items }: { items: ProjectItem[] }) {
   const competitions = items.filter((item) => item.type === "competition");
 
   const renderCards = (list: ProjectItem[]) => {
-    if (list.length === 0) {
-      return (
-        <p className="text-gray-500">
-          {language === "tr" ? "Henüz içerik eklenmedi." : "No content has been added yet."}
-        </p>
-      );
-    }
+    
 
     return (
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
