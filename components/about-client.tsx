@@ -16,7 +16,7 @@ export default function AboutClient({ about }: { about: AboutData }) {
   const t = translations[language];
 
   const aboutText = language === "tr"
-    ? about?.descriptionTr ?? (t.about as { descriptionTr: string }).descriptionTr
+    ? about?.descriptionTr ?? (t.about as { description: string }).description
     : about?.descriptionEn ?? (t.about as { description: string }).description;
 
   const highlightKeywords = (text: string) => {

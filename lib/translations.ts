@@ -1,4 +1,4 @@
-﻿export const translations = {
+﻿﻿export const translations = {
   en: {
     nav: {
       home: "Home",
@@ -42,6 +42,16 @@
       cardTitle: "XR Academy 2025",
       categoryLabel: "Competition",
       cardDescription: "Team: XR Gezgini - 2nd Place in Turkey",
+      ozerHotelTitle: "Özer Hotel",
+      ozerHotelCategory: "Project",
+      ozerHotelShortDesc: "10th Grade Object Oriented Programming Hotel Automation Project.",
+      ozerHotelHover: "Click to learn more about the project.",
+      ozerHotelDesc: "Ozer Hotel, my project in 10th Grade Object Oriented Programming class, is my first automation. Although I finished my project in May 2025, I have made additions to my project in April 2026. My project is an automation showing what a hotel manager and employee have authority to do and what kind of work they can do. I made my project with C# language on Visual Studio 2022 along with SQL Server Database.",
+      project2Title: "Star Chasers",
+      project2Category: "Project",
+      project2ShortDesc: "Our 2nd Place XR-VR Unity Game in Turkey",
+      project2Hover: "Click to learn more about the project.",
+      project2Desc: "Our XR/VR game, presented at XR Academy on December 5, 2025, won 2nd place in Turkey. We developed our project as a team of 5. Although we had zero knowledge of Unity, we managed to bring our game to ALPHA stage in 2 weeks. While developing this project, both my Unity and VR knowledge were refreshed. Our game is about Tirbo, a traveler in space, coming to the Solar System in the Milky Way Galaxy. Since our game is currently in Alpha, there are only Venus and Earth planets. The passthrough feature is mostly used on Earth. We plan to develop our game and add all planets.",
     },
     contact: {
       email: "mertbatuu95@gmail.com",
@@ -67,7 +77,7 @@
       noUpdates: "Henüz güncelleme yok.",
     },
     about: {
-      descriptionTr:
+      description:
         "Bir lise öğrencisiyim. HTML/CSS, C#, arduino, Vibe coding, Unity Game Engine, VR/XR projeleri üzerinde çalışıyorum ve okulda belli kısmının dersini alıyorum. Amacım kendimi geliştirip globale atılmak ve yapabildiğimin en iyisini yapmaktır. XR/VR Türkiye 2.ciliği kazandım. Başarılarıma daha fazlasını eklemeyi planlıyorum ve bunun üzerinde çabalıyorum.",
     },
     education: {
@@ -91,6 +101,16 @@
       cardTitle: "XR Academy 2025",
       categoryLabel: "Yarışma",
       cardDescription: "Takım: XR Gezgini - Türkiye 2.liği",
+      ozerHotelTitle: "Özer Hotel",
+      ozerHotelCategory: "Proje",
+      ozerHotelShortDesc: "10.Sınıf Nesne Tabanlı Programlama Otel Otomasyonu Projem.",
+      ozerHotelHover: "Proje hakkında bilgi edinmek için tıklayınız.",
+      ozerHotelDesc: "10.Sınıfta Nesne Tabanlı Programlama Dersinde yaptığım projem olan Özer Hotel,ilk otomasyonumdur. Projemi 2025 Mayısında bitirmiş olmama rağmen 2026 Nisan ayındada projeme eklemeler yapmış bulunmaktayım. Projem bir otel yöneticisinin ve çalışanının nelere yetkisi olduğunu ve ne gibi işler yapabildiğini gösteren bir otomasyondur. Projemi SQL Server Databaseiyle birlikte, Visual Studio 2022 üzerinden c# diliyle yapmış bulunmaktayım.",
+      project2Title: "Star Chasers",
+      project2Category: "Proje",
+      project2ShortDesc: "Türkiye 2.liği XR-VR Unity Oyunumuz",
+      project2Hover: "Proje hakkında bilgi edinmek için tıklayınız.",
+      project2Desc: "5 Aralık 2025'te sunulan XR Akademi XR/VR oyunumuz Türkiye 2.liği kazanmıştır. 5 kişilik ekip olarak projemizi geliştirdik. Unity hakkında sıfır bilgimiz olmasına rağmen oyunumuzu 2 hafta içinde ALPHA durumuna getirebilmişizdir. Bu projeyi geliştirirken hem Unity hem de VR bilgilerim yenilenmiş oldu. Oyunumuz, uzayda bir gezgin olan Tirbo'nun Samanyolu Galaksisi'nde Güneş Sistemi'ne gelmesini konu alıyor. Oyunumuz şu an Alpha'da olduğundan dolayı sadece Venüs ve Dünya gezegenleri var. Dünya'da passthrough özelliği çoğunlukla kullanılmıştır. Oyunumuzu geliştirip tüm gezegenleri eklemeyi planlıyoruz.",
     },
     contact: {
       email: "mertbatuu95@gmail.com",

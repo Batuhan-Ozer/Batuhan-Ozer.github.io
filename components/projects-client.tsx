@@ -29,6 +29,8 @@ export default function ProjectsClient({ items }: { items: ProjectItem[] }) {
   
   // Pop-up'ın açık/kapalı durumunu tutan state
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isProject1ModalOpen, setIsProject1ModalOpen] = useState(false);
+  const [isProject2ModalOpen, setIsProject2ModalOpen] = useState(false);
 
   const projects = items.filter((item) => item.type === "project");
   const competitions = items.filter((item) => item.type === "competition");
@@ -98,12 +100,128 @@ export default function ProjectsClient({ items }: { items: ProjectItem[] }) {
         <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
           {t.projects.projectsTitle}
         </h2>
+
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3 mb-6">
+          {/* 1. Proje Kartı: Özer Hotel */}
+          <div 
+            className="group rounded-2xl border border-[#1a222c] overflow-hidden transition md:hover:-translate-y-1 md:hover:bg-[#0b0f14] cursor-pointer"
+            onClick={() => setIsProject1ModalOpen(true)}
+          >
+            <div className="aspect-video bg-zinc-900 relative">
+              <Image
+                src="/images/ozerHotel.png"
+                alt="Özer Hotel"
+                width={400}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <p className="text-white font-bold text-sm px-4 text-center">
+                  {t.projects.ozerHotelHover}
+                </p>
+              </div>
+            </div>
+            <div className="p-4 sm:p-5">
+              <p className="text-xs sm:text-sm text-gray-500 mb-2">May 2025</p>
+              <h2 className="text-lg sm:text-xl font-semibold mb-2 leading-snug break-words">
+                {t.projects.ozerHotelTitle}
+              </h2>
+              <p className="text-sm text-gray-500 mb-3 break-words">
+                {t.projects.ozerHotelCategory}
+              </p>
+              <p className="text-sm sm:text-base line-clamp-3 text-zinc-300 leading-relaxed">
+                {t.projects.ozerHotelShortDesc}
+              </p>
+            </div>
+          </div>
+
+          {/* 2. Proje Kartı: Star Chasers */}
+          <div 
+            className="group rounded-2xl border border-[#1a222c] overflow-hidden transition md:hover:-translate-y-1 md:hover:bg-[#0b0f14] cursor-pointer"
+            onClick={() => setIsProject2ModalOpen(true)}
+          >
+            <div className="aspect-video bg-zinc-900 relative">
+              <Image
+                src="/images/starChasers.jpg"
+                alt="Star Chasers"
+                width={400}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <p className="text-white font-bold text-sm px-4 text-center">
+                  {t.projects.project2Hover}
+                </p>
+              </div>
+            </div>
+            <div className="p-4 sm:p-5">
+              <p className="text-xs sm:text-sm text-gray-500 mb-2">Dec 2025</p>
+              <h2 className="text-lg sm:text-xl font-semibold mb-2 leading-snug break-words">
+                {t.projects.project2Title}
+              </h2>
+              <p className="text-sm text-gray-500 mb-3 break-words">
+                {t.projects.project2Category}
+              </p>
+              <p className="text-sm sm:text-base line-clamp-3 text-zinc-300 leading-relaxed">
+                {t.projects.project2ShortDesc}
+              </p>
+            </div>
+          </div>
+        </div>
+
         {projects.length === 0 ? (
           <p className="text-sm sm:text-base text-gray-500">
             {t.projects.emptyMessage}
           </p>
         ) : (
           renderCards(projects)
+        )}
+
+        {/* ÖZER HOTEL PROJESİ POP-UP (MODAL) EKRANI */}
+        {isProject1ModalOpen && (
+          <div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+            onClick={() => setIsProject1ModalOpen(false)}
+          >
+            <div
+              className="relative max-w-4xl w-full h-auto min-h-[50vh] rounded-3xl overflow-hidden bg-[#0b0f14] border border-[#1a222c] flex flex-col items-center justify-center p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 text-center">
+                {t.projects.ozerHotelTitle}
+              </h2>
+              <p className="text-sm md:text-lg text-zinc-300 text-center max-w-3xl leading-relaxed">
+                {t.projects.ozerHotelDesc}
+              </p>
+              <Link
+                href="https://github.com/Batuhan-Ozer/Otel_Otomasyonu"
+                target="_blank"
+                className="mt-8 rounded-2xl border border-[#1a222c] bg-zinc-900 px-6 py-3 text-base md:text-lg font-medium text-white hover:bg-zinc-800 transition"
+              >
+                {language === "tr" ? "GitHub'da İncele" : "View on GitHub"}
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* PROJE 2 POP-UP (MODAL) EKRANI */}
+        {isProject2ModalOpen && (
+          <div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+            onClick={() => setIsProject2ModalOpen(false)}
+          >
+            <div
+              className="relative max-w-4xl w-full h-auto min-h-[50vh] rounded-3xl overflow-hidden bg-[#0b0f14] border border-[#1a222c] flex flex-col items-center justify-center p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 text-center">
+                {t.projects.project2Title}
+              </h2>
+              <p className="text-sm md:text-lg text-zinc-300 text-center max-w-3xl leading-relaxed">
+                {t.projects.project2Desc}
+              </p>
+            </div>
+          </div>
         )}
       </section>
 
@@ -173,39 +291,13 @@ export default function ProjectsClient({ items }: { items: ProjectItem[] }) {
                 className="object-cover opacity-60"
               />
               <div className="absolute inset-0 flex items-center justify-center p-6">
-                <div className="max-h-full w-full max-w-3xl overflow-y-auto rounded-3xl bg-black/70 border border-white/10 p-6 text-sm sm:text-base leading-7 text-white shadow-xl">
-                  {language === "tr" ? (
-                    <>
-                      <p>“StarChasers” Ekibine XR Akademi Hackathon’undan İkincilik Ödülü! 🚀🪐</p>
-                      <p className="mt-4">🎓 Proje danışmanlığını yürüttüğüm “StarChasers” ekibi, “XR Akademi: Eğitimde Dijital Dönüşüm ve KarmaGerçeklik Teknolojileriyle OyunTasarımı” programı kapsamında, 5 Aralık’ta DotsHub’da düzenlenen hackathon’da ikincilik ödülüne layık görüldü.</p>
-                      <p className="mt-4">⏰ Yaklaşık bir ay süren yoğun çalışma süreci, proje toplantıları ve tasarım oturumlarının ardından ekibim, birbirinden değerli 14 takımın yarıştığı bu süreçten gurur verici bir başarıyla döndü 🏆</p>
-                      <p className="mt-4">🌍 Star Chasers ekibi, MetaQuest üzerinde Unity oyun motorunu kullanarak, XR passthrough tabanlı, uzay temalı ve sürdürülebilirlik odaklı bir öğrenme deneyimi tasarladı.</p>
-                      <p className="mt-4">🎮🥽 Ödülün Meta yöneticisi Aanchal Mehta tarafından takdim edilmesi ise ekibimizin elde ettiği bu başarıya ayrı bir anlam kattı 🌟</p>
-                      <p className="mt-4">🏛️ Değerli paydaşlarımız ETKİM MEB, Koç Üniversitesi KARMA XR Lab, Habitat Derneği, ArkHaus Community, Meta for Developers ve Games for Change Türkiye iş birliğine;</p>
-                      <p className="mt-4">👩‍⚖️ Jüri üyeleri Bilgehan Ozbaylanli, Naz Degirmenci, Burcin Gurbuz, Oytun Kal ve Cemre Gökpınar'a ve</p>
-                      <p className="mt-4">💙 Sürece değerli katkılarıyla eşlik eden mentorumuz İpek Kuran'a gönülden teşekkürler! Mehmet Aslan Uğurlu</p>
-                      <p className="mt-4">👨‍🚀 XR yolculuğunuz daim olsun StarChasers!</p>
-                      <p className="mt-4">🧑‍💻 🥽👩‍💻 başarı ve güzelheyecan teşekkürler! Asim Evren Yantac</p>
-                    </>
-                  ) : (
-                    <>
-                      <p>Second Prize for the “Star Chasers” Team at the XR Academy Hackathon! 🚀🪐</p>
-                      <p className="mt-4">🎓 The “StarChasers” team, for which I served as project advisor, was awarded second prize at the hackathon held on 5 December at DotsHub, within the scope of the “XR Academy: Game Design in Education with Digital Transformation and Mixed Reality Technologies” program.</p>
-                      <p className="mt-4">⏰ After nearly a month of intensive work, project meetings and design sessions, my team returned from this journey – where 14 strong teams competed – with a success we are truly proud of 🏆</p>
-                      <p className="mt-4">🌍 The Star Chasers team designed a space-themed and sustainability-focused learning experience using the Unity game engine on MetaQuest, built on XR passthrough.</p>
-                      <p className="mt-4">🎮🥽 Having the award presented by Meta manager Aanchal Mehta added an extra layer of meaning to this achievement 🌟</p>
-                      <p className="mt-4">🏛️ My sincere thanks go to our valued partners ETKİM MEB, Koç University KARMA XR Lab, Habitat Association, ArkHaus Community, Meta for Developers and Games for Change Türkiye for their collaboration;</p>
-                      <p className="mt-4">👩‍⚖️ and to the jury members Bilgehan Ozbaylanli, Naz Degirmenci, Burcin Gurbuz, Oytun Kal and Cemre Gökpınar for their time and insightful evaluations.</p>
-                      <p className="mt-4">💙 I would also like to extend my heartfelt thanks to our mentor İpek Kuran, who accompanied us throughout the process with her valuable contributions.</p>
-                      <p className="mt-4">👨‍🚀 May your XR journey continue, Star Chasers!</p>
-                      <p className="mt-4">🧑‍💻🥽👩‍💻 Thank you for the success and the exciting moments you made us experience. 🙌</p>
-                    </>
-                  )}
-                </div>
-              </div>
+              <p className="text-white font-bold text-2xl md:text-4xl text-center z-10 drop-shadow-lg">
+                {language === "tr" ? "XR Akademi 2025 Türkiye 2.liği!" : "XR Academy 2025 2nd Place in Turkey!"}
+              </p>
             </div>
           </div>
-        )}
+        </div>
+      )}
       </section>
     </main>
   );
