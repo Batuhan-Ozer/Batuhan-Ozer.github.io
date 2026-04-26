@@ -131,10 +131,9 @@ export default function ProjectsClient({ items }: { items: ProjectItem[] }) {
               {/* HOVER EFEKTİ VE YAZISI */}
               <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <p className="text-white font-bold text-sm px-4 text-center">
-                  
-                  {/* 1. DÜZENLEME ALANI: HOVER METNİ */}
-                  {language === "tr" ? "Yarışma ikinciliği Görseli için Tıkla" : "Click for Competition Second Place Image"}
-                  
+                  {language === "tr"
+                    ? "Yarışma ile ilgili paylaşımımızın yazısını ve fotoğrafını görmek için tıklayınız."
+                    : "Click to view our post text and photo about the competition."}
                 </p>
               </div>
             </div>
@@ -160,21 +159,50 @@ export default function ProjectsClient({ items }: { items: ProjectItem[] }) {
         {/* POP-UP (MODAL) EKRANI */}
         {isModalOpen && (
           <div
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm p-4 cursor-pointer"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
             onClick={() => setIsModalOpen(false)}
           >
             <div
-              className="relative max-w-5xl w-full h-[75vh]"
+              className="relative max-w-5xl w-full h-[75vh] rounded-3xl overflow-hidden bg-black"
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                
-                src="/images/xr-akademi-basari.png" 
-                
+                src="/images/xr-akademi-basari.png"
                 alt="Pop-up Görseli"
                 fill
-                className="object-contain"
+                className="object-cover opacity-60"
               />
+              <div className="absolute inset-0 flex items-center justify-center p-6">
+                <div className="max-h-full w-full max-w-3xl overflow-y-auto rounded-3xl bg-black/70 border border-white/10 p-6 text-sm sm:text-base leading-7 text-white shadow-xl">
+                  {language === "tr" ? (
+                    <>
+                      <p>“StarChasers” Ekibine XR Akademi Hackathon’undan İkincilik Ödülü! 🚀🪐</p>
+                      <p className="mt-4">🎓 Proje danışmanlığını yürüttüğüm “StarChasers” ekibi, “XR Akademi: Eğitimde Dijital Dönüşüm ve KarmaGerçeklik Teknolojileriyle OyunTasarımı” programı kapsamında, 5 Aralık’ta DotsHub’da düzenlenen hackathon’da ikincilik ödülüne layık görüldü.</p>
+                      <p className="mt-4">⏰ Yaklaşık bir ay süren yoğun çalışma süreci, proje toplantıları ve tasarım oturumlarının ardından ekibim, birbirinden değerli 14 takımın yarıştığı bu süreçten gurur verici bir başarıyla döndü 🏆</p>
+                      <p className="mt-4">🌍 Star Chasers ekibi, MetaQuest üzerinde Unity oyun motorunu kullanarak, XR passthrough tabanlı, uzay temalı ve sürdürülebilirlik odaklı bir öğrenme deneyimi tasarladı.</p>
+                      <p className="mt-4">🎮🥽 Ödülün Meta yöneticisi Aanchal Mehta tarafından takdim edilmesi ise ekibimizin elde ettiği bu başarıya ayrı bir anlam kattı 🌟</p>
+                      <p className="mt-4">🏛️ Değerli paydaşlarımız ETKİM MEB, Koç Üniversitesi KARMA XR Lab, Habitat Derneği, ArkHaus Community, Meta for Developers ve Games for Change Türkiye iş birliğine;</p>
+                      <p className="mt-4">👩‍⚖️ Jüri üyeleri Bilgehan Ozbaylanli, Naz Degirmenci, Burcin Gurbuz, Oytun Kal ve Cemre Gökpınar'a ve</p>
+                      <p className="mt-4">💙 Sürece değerli katkılarıyla eşlik eden mentorumuz İpek Kuran'a gönülden teşekkürler! Mehmet Aslan Uğurlu</p>
+                      <p className="mt-4">👨‍🚀 XR yolculuğunuz daim olsun StarChasers!</p>
+                      <p className="mt-4">🧑‍💻 🥽👩‍💻 başarı ve güzelheyecan teşekkürler! Asim Evren Yantac</p>
+                    </>
+                  ) : (
+                    <>
+                      <p>Second Prize for the “Star Chasers” Team at the XR Academy Hackathon! 🚀🪐</p>
+                      <p className="mt-4">🎓 The “StarChasers” team, for which I served as project advisor, was awarded second prize at the hackathon held on 5 December at DotsHub, within the scope of the “XR Academy: Game Design in Education with Digital Transformation and Mixed Reality Technologies” program.</p>
+                      <p className="mt-4">⏰ After nearly a month of intensive work, project meetings and design sessions, my team returned from this journey – where 14 strong teams competed – with a success we are truly proud of 🏆</p>
+                      <p className="mt-4">🌍 The Star Chasers team designed a space-themed and sustainability-focused learning experience using the Unity game engine on MetaQuest, built on XR passthrough.</p>
+                      <p className="mt-4">🎮🥽 Having the award presented by Meta manager Aanchal Mehta added an extra layer of meaning to this achievement 🌟</p>
+                      <p className="mt-4">🏛️ My sincere thanks go to our valued partners ETKİM MEB, Koç University KARMA XR Lab, Habitat Association, ArkHaus Community, Meta for Developers and Games for Change Türkiye for their collaboration;</p>
+                      <p className="mt-4">👩‍⚖️ and to the jury members Bilgehan Ozbaylanli, Naz Degirmenci, Burcin Gurbuz, Oytun Kal and Cemre Gökpınar for their time and insightful evaluations.</p>
+                      <p className="mt-4">💙 I would also like to extend my heartfelt thanks to our mentor İpek Kuran, who accompanied us throughout the process with her valuable contributions.</p>
+                      <p className="mt-4">👨‍🚀 May your XR journey continue, Star Chasers!</p>
+                      <p className="mt-4">🧑‍💻🥽👩‍💻 Thank you for the success and the exciting moments you made us experience. 🙌</p>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         )}
